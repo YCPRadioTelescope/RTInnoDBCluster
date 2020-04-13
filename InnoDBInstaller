@@ -25,10 +25,12 @@ do
    fi
 done
 
-print ""
-print "Next password prompt is a ROOT prompt"
+echo ""
+echo "Next password prompt is a ROOT prompt"
 mysql -u root -p <<EOF
 create user 'replUser' identified by '${pass}';
 grant all privileges on *.* to 'replUser'@'%' with grant option;
 reset master;
 EOF
+
+rm ./mysql-apt-config_0.8.15-1_all.deb
